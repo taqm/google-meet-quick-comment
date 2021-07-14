@@ -39,12 +39,14 @@ export const mainIcon = css`
 
 export const popup = css`
   position: absolute;
+  display: flex;
   bottom: calc(100% + 10px);
   bottom: 0;
   right: 50px;
 `;
 
 export const item = css`
+  text-align: center;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   padding: 5px 10px;
@@ -52,7 +54,7 @@ export const item = css`
   cursor: pointer;
 
   & + & {
-    margin-top: 4px;
+    margin-left: 4px;
   }
 
   &:hover {

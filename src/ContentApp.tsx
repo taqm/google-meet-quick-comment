@@ -4,9 +4,15 @@ import * as React from 'react';
 import { sendMessage } from './meet';
 import * as styles from './styles';
 
-const Item: React.VFC<{ text: string }> = ({ text }) => {
+type ItemProps = {
+  text: string;
+  onClick: () => void;
+};
+
+const Item: React.VFC<ItemProps> = ({ text, onClick }) => {
   const handleClick = () => {
     sendMessage(text);
+    onClick();
   };
   return (
     <div className={styles.item} onClick={handleClick}>
@@ -15,23 +21,24 @@ const Item: React.VFC<{ text: string }> = ({ text }) => {
   );
 };
 
-const Popup: React.VFC = () => {
+type PopupProps = {
+  onItemClick: () => void;
+};
+const Popup: React.VFC<PopupProps> = ({ onItemClick }) => {
   return (
     <div className={styles.popup}>
-      <Item text="👍" />
-      <Item text="🆗" />
-      <Item text="🙌" />
-      <Item text="🎉" />
-      <Item text="お疲れさまです" />
+      <Item onClick={onItemClick} text="👍" />
+      <Item onClick={onItemClick} text="🆗" />
+      <Item onClick={onItemClick} text="🙌" />
+      <Item onClick={onItemClick} text="🎉" />
     </div>
   );
 };
 
 const ContentApp: React.VFC = () => {
-  const [popupOpen, setPopupOpen] = React.useState(true);
+  const [popupOpen, setPopupOpen] = React.useState(false);
 
-  const togglePopup: JSX.IntrinsicElements['button']['onClick'] = (ev) => {
-    ev.preventDefault();
+  const togglePopup = () => {
     setPopupOpen(!popupOpen);
   };
 
@@ -42,7 +49,7 @@ const ContentApp: React.VFC = () => {
           start
         </i>
       </button>
-      {popupOpen && <Popup />}
+      {popupOpen && <Popup onItemClick={togglePopup} />}
     </div>
   );
 };
