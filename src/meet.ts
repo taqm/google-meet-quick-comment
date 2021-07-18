@@ -1,6 +1,12 @@
-const waitAppendAndVisible = <T extends HTMLElement>(
+const isVisible = (
+  elem: HTMLElement | null | undefined,
+): elem is HTMLElement => {
+  return !!elem?.offsetParent;
+};
+
+const waitFor = <T extends HTMLElement>(
   selector: () => T | null | undefined,
-  action: () => Promise<void> | void = () => {},
+  ifInvisible?: () => Promise<void> | void,
 ) => {
   const wont = selector();
   if (isVisible(wont)) {
@@ -19,18 +25,12 @@ const waitAppendAndVisible = <T extends HTMLElement>(
       if (limit-- > 0) {
         setTimeout(fn, 100);
       } else {
-        reject(Error("does'nt visible elemnt"));
+        reject(Error("doesn't visible element"));
       }
     };
-    await action();
+    await ifInvisible?.();
     fn();
   });
-};
-
-const isVisible = (
-  elem: HTMLElement | null | undefined,
-): elem is HTMLElement => {
-  return !!elem?.offsetParent;
 };
 
 const findIcon = (text: string) => {
@@ -41,7 +41,7 @@ const findIcon = (text: string) => {
 };
 
 export const sendMessage = async (text: string) => {
-  const textarea = await waitAppendAndVisible(
+  const textarea = await waitFor(
     () =>
       document.querySelector<HTMLTextAreaElement>(
         'textarea[aria-label="参加者全員にメッセージを送信"]',
@@ -58,7 +58,7 @@ export const sendMessage = async (text: string) => {
   ev.initEvent('input', true, true);
   textarea.dispatchEvent(ev);
 
-  const sendIcon = waitAppendAndVisible(() =>
+  const sendIcon = waitFor(() =>
     document.querySelector<HTMLTextAreaElement>(
       'button[aria-label="参加者全員にメッセージを送信"]:not([disabled])',
     ),

@@ -6,13 +6,11 @@ import * as styles from './styles';
 
 type ItemProps = {
   text: string;
-  onClick: () => void;
 };
 
-const Item: React.VFC<ItemProps> = ({ text, onClick }) => {
+const Item: React.VFC<ItemProps> = ({ text }) => {
   const handleClick = () => {
     sendMessage(text);
-    onClick();
   };
   return (
     <div className={styles.item} onClick={handleClick}>
@@ -21,16 +19,13 @@ const Item: React.VFC<ItemProps> = ({ text, onClick }) => {
   );
 };
 
-type PopupProps = {
-  onItemClick: () => void;
-};
-const Popup: React.VFC<PopupProps> = ({ onItemClick }) => {
+const Popup: React.VFC = () => {
   return (
     <div className={styles.popup}>
-      <Item onClick={onItemClick} text="👍" />
-      <Item onClick={onItemClick} text="🆗" />
-      <Item onClick={onItemClick} text="🙌" />
-      <Item onClick={onItemClick} text="🎉" />
+      <Item text="👍" />
+      <Item text="🆗" />
+      <Item text="🙌" />
+      <Item text="🎉" />
     </div>
   );
 };
@@ -46,10 +41,10 @@ const ContentApp: React.VFC = () => {
     <div id="myapp" className={styles.myapp}>
       <button className={styles.button} onClick={togglePopup}>
         <i className={classnames('google-material-icons', styles.mainIcon)}>
-          start
+          {popupOpen ? 'close' : 'star'}
         </i>
       </button>
-      {popupOpen && <Popup onItemClick={togglePopup} />}
+      {popupOpen && <Popup />}
     </div>
   );
 };
