@@ -3,11 +3,21 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import globals from 'rollup-plugin-node-globals';
 
-export default {
-  input: './src/content.tsx',
-  output: {
-    file: './dist/content.js',
-    format: 'iife',
+export default [
+  {
+    input: './src/content.tsx',
+    output: {
+      file: './dist/content.js',
+      format: 'iife',
+    },
+    plugins: [nodeResolve(), commonjs(), rollupTypeScript(), globals()],
   },
-  plugins: [nodeResolve(), commonjs(), rollupTypeScript(), globals()],
-};
+  {
+    input: './src/background.ts',
+    output: {
+      file: './dist/background.js',
+      format: 'iife',
+    },
+    plugins: [nodeResolve(), commonjs(), rollupTypeScript(), globals()],
+  },
+];

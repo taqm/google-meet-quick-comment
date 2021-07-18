@@ -53,6 +53,8 @@ export const item = css`
   padding: 5px 10px;
   font-size: 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 
   & + & {
     margin-left: 4px;

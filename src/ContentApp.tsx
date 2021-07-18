@@ -20,12 +20,23 @@ const Item: React.VFC<ItemProps> = ({ text }) => {
 };
 
 const Popup: React.VFC = () => {
+  const [items, setItems] = React.useState<MyItem[]>([]);
+
+  React.useEffect(() => {
+    chrome.runtime.sendMessage('get items', (res: MyItem[]) => {
+      if (res) {
+        setItems(res);
+      } else {
+        console.error(Error('res is falsy'));
+      }
+    });
+  }, [setItems]);
+
   return (
     <div className={styles.popup}>
-      <Item text="👍" />
-      <Item text="🆗" />
-      <Item text="🙌" />
-      <Item text="🎉" />
+      {items.map((v) => (
+        <Item key={v.key} text={v.data} />
+      ))}
     </div>
   );
 };
