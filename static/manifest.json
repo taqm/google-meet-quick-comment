@@ -1,7 +1,7 @@
 {
   "name": "google-meet-quick-repray",
   "description": "you can quickly repray.",
-  "version": "0.01",
+  "version": "0.1.1",
   "manifest_version": 3,
   "content_scripts": [
     {
