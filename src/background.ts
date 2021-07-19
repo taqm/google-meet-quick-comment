@@ -4,6 +4,6 @@ chrome.runtime.onMessage.addListener((_message, _sender, sendResponse) => {
     { id: 'test2', data: '🆗' },
     { id: 'test3', data: '🙌' },
     { id: 'test3', data: '🎉' },
-    { id: 'test4', data: 'Hello' },
+    { id: 'test4', data: 'お疲れさまです' },
   ]);
 });
