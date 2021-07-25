@@ -1,16 +1,12 @@
 {
   "name": "google-meet-quick-repray",
   "description": "you can quickly repray.",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "manifest_version": 3,
   "content_scripts": [
     {
-      "matches": [
-        "https://meet.google.com/*"
-      ],
-      "js": [
-        "content.js"
-      ]
+      "matches": ["https://meet.google.com/*"],
+      "js": ["content.js"]
     }
   ],
   "background": {
