@@ -6,12 +6,8 @@ const mainObserver = new MutationObserver(() => {
 
   if (!selfNameElem) return;
 
-  const mainCol =
-    selfNameElem?.parentElement?.parentElement?.parentElement?.parentElement!;
-
-  mainCol.classList.add('myapp-parent');
   const myapp = document.createElement('div');
-  mainCol.appendChild(myapp);
+  document.body.appendChild(myapp);
 
   ReactDOM.render(<ContentApp />, myapp);
   mainObserver.disconnect();

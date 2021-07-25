@@ -1,8 +1,9 @@
-import classnames from 'classnames';
 import * as React from 'react';
+import Draggable from 'react-draggable';
 
+import MyWindow from './MyWindow';
 import { sendMessage } from './meet';
-import * as styles from './styles';
+import * as styles from './ContentApp.styles';
 
 type ItemProps = {
   text: string;
@@ -19,7 +20,7 @@ const Item: React.VFC<ItemProps> = ({ text }) => {
   );
 };
 
-const Popup: React.VFC = () => {
+const ContentApp: React.VFC = () => {
   const [items, setItems] = React.useState<MyItem[]>([]);
 
   React.useEffect(() => {
@@ -33,29 +34,16 @@ const Popup: React.VFC = () => {
   }, [setItems]);
 
   return (
-    <div className={styles.popup}>
-      {items.map((v) => (
-        <Item key={v.key} text={v.data} />
-      ))}
-    </div>
-  );
-};
-
-const ContentApp: React.VFC = () => {
-  const [popupOpen, setPopupOpen] = React.useState(false);
-
-  const togglePopup = () => {
-    setPopupOpen(!popupOpen);
-  };
-
-  return (
     <div id="myapp" className={styles.myapp}>
-      <button className={styles.button} onClick={togglePopup}>
-        <i className={classnames('google-material-icons', styles.mainIcon)}>
-          {popupOpen ? 'close' : 'star'}
-        </i>
-      </button>
-      {popupOpen && <Popup />}
+      <Draggable>
+        <div className={styles.content}>
+          <MyWindow>
+            {items.map((v) => (
+              <Item key={v.key} text={v.data} />
+            ))}
+          </MyWindow>
+        </div>
+      </Draggable>
     </div>
   );
 };
