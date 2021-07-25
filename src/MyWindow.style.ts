@@ -3,14 +3,14 @@ import { css } from '@emotion/css';
 export const root = css`
   border-radius: 4px 4px 0;
   width: 200px;
+  box-shadow: 0px 1px 5px 0px grey;
 `;
 
 export const titleBar = css`
-  background: #d7d5d7;
+  background: #e9e0e2;
   border-radius: 4px 4px 0 0;
   display: flex;
   align-items: center;
-  width: 100%;
   padding: 4px 8px;
 `;
 
@@ -45,9 +45,8 @@ export const winSizeButton = css`
 `;
 
 export const content = css`
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(240, 240, 240, 0.7);
   padding: 8px;
-  width: 100%;
 
   &.minimize {
     display: none;

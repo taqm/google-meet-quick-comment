@@ -11,7 +11,6 @@ export const myapp = css`
 `;
 
 export const content = css`
-  padding: 10px;
   position: absolute;
   pointer-events: initial;
 `;
