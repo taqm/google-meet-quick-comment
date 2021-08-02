@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Draggable from 'react-draggable';
 
-import MyWindow from './MyWindow';
+import MyWindow, { titleBarSelector } from './MyWindow';
 import { sendMessage } from './meet';
 import * as styles from './ContentApp.styles';
 
@@ -35,7 +35,7 @@ const ContentApp: React.VFC = () => {
 
   return (
     <div id="myapp" className={styles.myapp}>
-      <Draggable>
+      <Draggable bounds="parent" handle={titleBarSelector}>
         <div className={styles.content}>
           <MyWindow>
             {items.map((v) => (
