@@ -12,12 +12,4 @@ export default [
     },
     plugins: [nodeResolve(), commonjs(), rollupTypeScript(), globals()],
   },
-  {
-    input: './src/background.ts',
-    output: {
-      file: './dist/background.js',
-      format: 'iife',
-    },
-    plugins: [nodeResolve(), commonjs(), rollupTypeScript(), globals()],
-  },
 ];

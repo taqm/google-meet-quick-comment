@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import * as styles from './MyWindow.style';
 
 type Props = {
-  children: React.ReactNode[];
+  children: React.ReactNode;
 };
 
 export const titleBarSelector = `.${styles.titleBar}`;
