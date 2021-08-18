@@ -1,7 +1,7 @@
 {
-  "name": "google-meet-quick-repray",
-  "description": "You can reply quickly",
-  "version": "0.3.1",
+  "name": "google-meet-quick-comment",
+  "description": "You can comment quickly",
+  "version": "0.3.2",
   "manifest_version": 3,
   "content_scripts": [
     {

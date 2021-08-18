@@ -32,7 +32,7 @@ const MyWindow: React.VFC<Props> = ({ children }) => {
         >
           -
         </button>
-        <span className={styles.titleText}>QuickRepray</span>
+        <span className={styles.titleText}>QuickComment</span>
       </div>
       <div
         className={classnames(styles.content, {
