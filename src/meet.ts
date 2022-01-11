@@ -40,11 +40,20 @@ const findIcon = (text: string) => {
     | undefined;
 };
 
+const querySelectors = <T extends HTMLElement>(...selectors: string[]) => {
+  const found = selectors.find(
+    (s) => document.querySelector(s),
+  );
+  if (!found) return null;
+  return document.querySelector<T>(found);
+}
+
 export const sendMessage = async (text: string) => {
   const textarea = await waitFor(
     () =>
-      document.querySelector<HTMLTextAreaElement>(
+      querySelectors<HTMLTextAreaElement>(
         'textarea[aria-label="参加者全員にメッセージを送信"]',
+        'textarea[aria-label="Send a message to everyone"]',
       ),
     () => {
       const chatIcon = findIcon('chat');
@@ -59,8 +68,9 @@ export const sendMessage = async (text: string) => {
   textarea.dispatchEvent(ev);
 
   const sendIcon = waitFor(() =>
-    document.querySelector<HTMLTextAreaElement>(
+    querySelectors<HTMLTextAreaElement>(
       'button[aria-label="参加者全員にメッセージを送信"]:not([disabled])',
+      'button[aria-label="Send a message to everyone"]:not([disabled])',
     ),
   );
   (await sendIcon).dispatchEvent(new Event('click', { bubbles: true }));
